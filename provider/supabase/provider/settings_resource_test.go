@@ -67,13 +67,19 @@ func TestAccSettingsResource(t *testing.T) {
 		Get("/v1/projects/mayuaycdtijbctgqbycg/config/auth").
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
-			SiteUrl: Ptr("http://localhost:3000"),
+			SiteUrl:           Ptr("http://localhost:3000"),
+			MailerOtpExp:      3600,
+			MfaPhoneOtpLength: 6,
+			SmsOtpLength:      6,
 		})
 	gock.New("https://api.supabase.com").
 		Patch("/v1/projects/mayuaycdtijbctgqbycg/config/auth").
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
-			SiteUrl: Ptr("http://localhost:3000"),
+			SiteUrl:           Ptr("http://localhost:3000"),
+			MailerOtpExp:      3600,
+			MfaPhoneOtpLength: 6,
+			SmsOtpLength:      6,
 		})
 	// Step 2: read
 	gock.New("https://api.supabase.com").
@@ -126,13 +132,19 @@ func TestAccSettingsResource(t *testing.T) {
 		Get("/v1/projects/mayuaycdtijbctgqbycg/config/auth").
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
-			SiteUrl: Ptr("http://localhost:3000"),
+			SiteUrl:           Ptr("http://localhost:3000"),
+			MailerOtpExp:      3600,
+			MfaPhoneOtpLength: 6,
+			SmsOtpLength:      6,
 		})
 	gock.New("https://api.supabase.com").
 		Get("/v1/projects/mayuaycdtijbctgqbycg/config/auth").
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
-			SiteUrl: Ptr("http://localhost:3000"),
+			SiteUrl:           Ptr("http://localhost:3000"),
+			MailerOtpExp:      3600,
+			MfaPhoneOtpLength: 6,
+			SmsOtpLength:      6,
 		})
 	// Step 3: update
 	gock.New("https://api.supabase.com").
@@ -207,21 +219,21 @@ func TestAccSettingsResource(t *testing.T) {
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
 			SiteUrl: Ptr("http://localhost:3000"),
-			JwtExp:  Ptr(float32(3600)),
+			JwtExp:  Ptr(int(3600)),
 		})
 	gock.New("https://api.supabase.com").
 		Patch("/v1/projects/mayuaycdtijbctgqbycg/config/auth").
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
 			SiteUrl: Ptr("http://localhost:3000"),
-			JwtExp:  Ptr(float32(1800)),
+			JwtExp:  Ptr(int(1800)),
 		})
 	gock.New("https://api.supabase.com").
 		Get("/v1/projects/mayuaycdtijbctgqbycg/config/auth").
 		Reply(http.StatusOK).
 		JSON(api.AuthConfigResponse{
 			SiteUrl: Ptr("http://localhost:3000"),
-			JwtExp:  Ptr(float32(1800)),
+			JwtExp:  Ptr(int(1800)),
 		})
 	// Run test
 	resource.Test(t, resource.TestCase{

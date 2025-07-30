@@ -12,6 +12,9 @@
             }
         },
         "datasources": {
+            "supabase_apikeys": {
+                "current": "supabase:index/getApikeys:getApikeys"
+            },
             "supabase_branch": {
                 "current": "supabase:index/getBranch:getBranch",
                 "fields": {
